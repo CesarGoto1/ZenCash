@@ -1,65 +1,90 @@
+/* --- Base Variables & Styles --- */
 :root {
   --primary-color: #4f46e5;
-  --secondary-color: #ecfdf5;
-  --background-color: #f9fafb;
-  --text-color: #111827;
-  --border-color: #e5e7eb;
+  --primary-hover: #4338ca;
+  --secondary-color: #ffffff;
+  --background-start: #f9fafb;
+  --background-end: #f3f4f6;
+  --text-color: #1f2937;
+  --border-color: #d1d5db;
   --danger-color: #ef4444;
+  --shadow-color: rgba(0, 0, 0, 0.05);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
     --secondary-color: #1f2937;
-    --background-color: #111827;
+    --background-start: #111827;
+    --background-end: #18212f;
     --text-color: #f9fafb;
     --border-color: #374151;
+    --danger-color: #f87171;
+    --shadow-color: rgba(0, 0, 0, 0.2);
   }
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--background-color);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(180deg, var(--background-start) 0%, var(--background-end) 100%);
   color: var(--text-color);
   margin: 0;
   padding: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
 .App {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 700px;
+  margin: 2rem auto;
 }
 
+/* --- Header --- */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid var(--border-color);
   padding-bottom: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 header h1 {
   margin: 0;
+  font-size: 2.25rem;
+  font-weight: 700;
   color: var(--primary-color);
 }
 
 .total-expenses {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 600;
+  background-color: var(--secondary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
 }
 
 .total-expenses span {
   color: var(--primary-color);
+  font-weight: 700;
 }
 
+/* --- Card & Form Styles --- */
 .expense-form, .expense-list {
   background-color: var(--secondary-color);
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -2px var(--shadow-color);
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
 }
 
 .form-control {
@@ -70,49 +95,201 @@ header h1 {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 .form-control input, .form-control select {
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
   border: 1px solid var(--border-color);
-  background-color: var(--background-color);
+  background-color: var(--background-start);
   color: var(--text-color);
-  box-sizing: border-box; /* Añadido */
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 
-.expense-form button { /* Selector modificado */
+.form-control input:focus, .form-control select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 20%, transparent);
+}
+
+
+/* --- Button Styles --- */
+button.btn {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  text-align: center;
 }
 
-button:hover {
-  opacity: 0.9;
+button.btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+button.btn:active {
+    transform: translateY(-1px);
 }
 
 .delete-btn {
   background-color: var(--danger-color);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
 }
 
+/* --- Table / List Styles --- */
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
 }
 
-th, td {
-  padding: 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border-color);
+thead {
+    display: none; /* Let's go for a card list on all screen sizes for consistency */
 }
 
-th {
-  font-weight: 600;
+tr {
+    background: var(--background-start);
+    border-radius: 10px;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+td {
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+td:last-child {
+
+    flex-direction: row;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+}
+
+
+
+td::before {
+
+    content: attr(data-label);
+
+    font-weight: 600;
+
+    font-size: 0.75rem;
+
+    margin-bottom: 0.25rem;
+
+    color: color-mix(in srgb, var(--text-color) 70%, transparent);
+
+    text-transform: uppercase;
+
+}
+
+
+
+/* Hide the label for the action button on desktop */
+
+td:last-child::before {
+
+    display: none;
+
+}
+
+
+
+/* --- Responsive --- */
+
+@media (max-width: 640px) {
+
+    .App {
+
+        margin: 1rem auto;
+
+    }
+
+    header {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 1.5rem;
+
+        text-align: center;
+
+    }
+
+    .expense-form, .expense-list {
+
+        padding: 1.5rem;
+
+        border-radius: 12px;
+
+    }
+
+    tr {
+
+        grid-template-columns: 1fr;
+
+        gap: 0.5rem;
+
+        text-align: center;
+
+    }
+
+    td {
+
+        align-items: center;
+
+    }
+
+    td::before {
+
+        text-align: center;
+
+    }
+
+
+
+    /* Re-display the label for the action button on mobile */
+
+    td:last-child::before {
+
+        display: block;
+
+    }
+
+
+
+    td:last-child {
+
+        flex-direction: column; /* Force stack for button and its label */
+
+        justify-content: center; /* Center the stack */
+
+        gap: 0.5rem; /* Add some space between label and button */
+
+    }
+
 }

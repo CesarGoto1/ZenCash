@@ -3,7 +3,7 @@ import ExpenseRow from './ExpenseRow';
 const ExpenseList = ({ expenses, dispatch }) => {
   return (
     <div className="expense-list">
-      <h3>Lista de Gastos</h3>
+      <h2>Lista de Gastos</h2>
       {expenses.length === 0 ? (
         <p>No hay gastos registrados.</p>
       ) : (

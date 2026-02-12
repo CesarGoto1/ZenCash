@@ -26,7 +26,7 @@ const ExpenseForm = ({ dispatch }) => {
 
   return (
     <form onSubmit={handleSubmit} className="expense-form">
-      <h3>Agregar Gasto</h3>
+      <h2>Agregar Gasto</h2>
       <div className="form-control">
         <label htmlFor="name">Nombre</label>
         <input
@@ -59,7 +59,7 @@ const ExpenseForm = ({ dispatch }) => {
           <option value="Otros">Otros</option>
         </select>
       </div>
-      <button type="submit">Agregar</button>
+      <button type="submit" className="btn">Agregar Gasto</button>
     </form>
   );
 };

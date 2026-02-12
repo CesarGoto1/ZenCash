@@ -8,11 +8,11 @@ const ExpenseRow = ({ expense, dispatch }) => {
 
   return (
     <tr>
-      <td>{expense.name}</td>
-      <td>${expense.amount.toFixed(2)}</td>
-      <td>{expense.category}</td>
-      <td>
-        <button onClick={handleDelete} className="delete-btn">
+      <td data-label="Nombre">{expense.name}</td>
+      <td data-label="Monto">${expense.amount.toFixed(2)}</td>
+      <td data-label="Categoría">{expense.category}</td>
+      <td data-label="Acción">
+        <button onClick={handleDelete} className="btn delete-btn">
           Eliminar
         </button>
       </td>
