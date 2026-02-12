@@ -79,9 +79,10 @@ header h1 {
   border: 1px solid var(--border-color);
   background-color: var(--background-color);
   color: var(--text-color);
+  box-sizing: border-box; /* Añadido */
 }
 
-button {
+.expense-form button { /* Selector modificado */
   background-color: var(--primary-color);
   color: white;
   border: none;
